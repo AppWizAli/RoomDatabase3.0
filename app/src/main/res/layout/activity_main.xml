@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Email" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit" />
+        <Button
+            android:id="@+id/submitteacher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Teacher" />
+
+
+        <Button
+            android:id="@+id/getbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="get All" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+
+        <Button
+            android:id="@+id/getAssigned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="getAssigned" />
+        <Button
+            android:id="@+id/deleteteacherall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete teacher" />
+        <Button
+            android:id="@+id/deletestudentall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete student" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/assign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Assign" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:id="@+id/rvUser"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvTeacher"/>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

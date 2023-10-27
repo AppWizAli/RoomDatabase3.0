@@ -17,6 +17,8 @@ interface TeacherDao {
 
     @Query("SELECT * FROM teachers")
     suspend fun getallteachers():List<TeacherEntity>?
+    @Query("SELECT * FROM teachers WHERE id=:teacheridd")
+    suspend fun getteacherbyid(teacheridd: Long):TeacherEntity?
     @Delete
     suspend fun deleteallteacher(user: List<TeacherEntity>)
 }

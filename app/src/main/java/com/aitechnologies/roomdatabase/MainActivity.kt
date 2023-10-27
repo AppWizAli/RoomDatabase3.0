@@ -1,9 +1,11 @@
 package com.aitechnologies.roomdatabase
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aitechnologies.ActivityAssign
 import com.aitechnologies.TeacherDao
 import com.aitechnologies.roomdatabase.databinding.ActivityMainBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -11,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() ,AdapterUser2.OnItemClickListener{
     private lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         var userDao:UserDao
         var teacherDao: TeacherDao
 
-        binding.submitButton.setOnClickListener {
+       /* binding.submitButton.setOnClickListener {
             // Assuming you have a user to insert
             val userEntity = UserEntity(name = binding.nameEditText.text.toString(), email =binding.emailEditText.text.toString())
 
@@ -42,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
 
             }
-        }
+        }*/
         binding.submitteacher.setOnClickListener {
             // Assuming you have a user to insert
             val userEntity = TeacherEntity(0,binding.nameEditText.text.toString(),binding.emailEditText.text.toString())
@@ -94,21 +96,21 @@ class MainActivity : AppCompatActivity() {
                 val database = AppDataBase.createDataBase(applicationContext)
 
                 // Get the UserDao
-                userDao = database.userDao()
+            //    userDao = database.userDao()
                 teacherDao = database.teacherdao()
 
-                val users = userDao.getAllusers()!!
+         //       val users = userDao.getAllusers()!!
                 val teachers = teacherDao.getallteachers()!!
 
                 runOnUiThread {
 
-                    binding.rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
+              /*      binding.rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
                     val adapter = AdapterUser(users)
-                    binding.rvUser.adapter = adapter
+                    binding.rvUser.adapter = adapter*/
 
 
                     binding.rvTeacher.layoutManager = LinearLayoutManager(this@MainActivity)
-                    val adapterteacher = AdapterUser2(teachers)
+                    val adapterteacher = AdapterUser2(teachers,this@MainActivity)
                     binding.rvTeacher.adapter = adapterteacher
 
 
@@ -116,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-binding.deletestudentall.setOnClickListener {
+/*binding.deletestudentall.setOnClickListener {
     GlobalScope.launch(Dispatchers.IO) {
         val database = AppDataBase.createDataBase(applicationContext)
         teacherDao = database.teacherdao()
@@ -124,7 +126,7 @@ binding.deletestudentall.setOnClickListener {
         userDao.deleteallUser(userDao.getAllusers()!!)
         teacherDao.deleteallteacher(teacherDao.getallteachers()!!)
     }
-}
+}*/
         binding.deleteteacherall.setOnClickListener {
     GlobalScope.launch(Dispatchers.IO) {
         val database = AppDataBase.createDataBase(applicationContext)
@@ -132,7 +134,7 @@ binding.deletestudentall.setOnClickListener {
         teacherDao.deleteallteacher(teacherDao.getallteachers()!!)
     }
 }
-binding.assign.setOnClickListener {
+/*binding.assign.setOnClickListener {
     GlobalScope.launch(Dispatchers.IO) {
         val database = AppDataBase.createDataBase(applicationContext)
         teacherDao = database.teacherdao()
@@ -140,10 +142,14 @@ binding.assign.setOnClickListener {
      var allteacher=teacherDao.getallteachers()!!
      var alluser=userDao.getAllusers()!!
     }
-}
+}*/
 
     }
 
+    override fun onItemClick(teacher: TeacherEntity) {
+       startActivity(Intent(this@MainActivity,ActivityAssign::class.java).putExtra("id",teacher.id
+           .toString()))
+    }
 
 
 }

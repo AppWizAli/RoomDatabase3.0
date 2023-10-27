@@ -7,10 +7,14 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterUser2(private  val list:List<TeacherEntity>):RecyclerView.Adapter<AdapterUser2.ViewHolder>() {
+class AdapterUser2(
+    private val list: List<TeacherEntity>,
+    private val onItemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<AdapterUser2.ViewHolder>() {
 
-
-
+    interface OnItemClickListener {
+        fun onItemClick(teacher: TeacherEntity)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item,parent,false))
     }
@@ -20,10 +24,14 @@ class AdapterUser2(private  val list:List<TeacherEntity>):RecyclerView.Adapter<A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val list=list[position]
-        holder.tvname.text=list.name
-        holder.tvemail.text=list.email
-        holder.tvid.text=list.id.toString()
+        val teacher = list[position]
+        holder.tvname.text = teacher.name
+        holder.tvemail.text = teacher.email
+        holder.tvid.text = teacher.id.toString()
+
+        holder.itemView.setOnClickListener {
+            onItemClickListener.onItemClick(teacher)
+        }
     }
 
 
